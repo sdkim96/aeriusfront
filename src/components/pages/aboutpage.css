@@ -1,0 +1,94 @@
+.about-page {
+    padding-top: 150px;
+    width: 100%;
+    height: auto;
+}
+
+.section1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+}
+
+.section2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+}
+
+.section1 img {
+    width: 50vh;
+    height: 90%;
+    object-fit: cover;
+}
+
+.section2 img {
+    width: 50vh;
+    height: 90%;
+    object-fit: cover;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+.section1 .text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; This will center the small-text */
+    width: 50%;
+    padding: 0 20px;
+    text-align: justify; /* This will right align the large-text */
+}
+
+
+.section1 .text-content .large-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 7em;  /* Adjust size as needed */
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 900;
+}
+
+.section1 .text-content .small-text {
+    font-family: 'Malgun Gothic', serif;
+    font-size: 1em;  /* Adjust size as needed */
+    text-align: justify;
+    max-width: 70%;
+    margin-left: auto;
+      /* Or whatever value makes sense for your layout */
+}
+
+
+.section2 p {
+    font-family: 'Arial', sans-serif, 10px;
+    width: 50%;
+    padding: 0 20px;
+    text-align: justify;
+}
+
+.section2 .text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 50%;
+    padding: 0 20px;
+}
+
+.section2 .text-content .large-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 7em;  /* Adjust size as needed */
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 900;
+}
+
+.section2 .text-content .small-text {
+    font-family: 'Malgun Gothic', serif;
+    font-size: 1em;  /* Adjust size as needed */
+    text-align: justify;
+}

@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+.login-page {
+    padding-top: 150px;
+    width: 100%;
+    height: auto;
+}
+
+.member {
+    display: flex;
+    padding: 100px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.non-member{
+    display: flex;
+    padding: 100px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+form[name='login-form'],
+form[name='non-member-form']{
+    width: 300px;
+}
+
+input[name='login-userid'], 
+input[name='login-password'],
+input[value='login'],
+input[name='non-member-name'],
+input[name='non-member-pw'],
+input[name='non-member-order-id'],
+input[value='find']
+{
+    width: 300px;
+}
+
+.member a:link, .member a:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+.member .login-text{
+    font-size: 2em;
+    font-family: 'Playfair Display', serif;
+}
+
+.non-member .login-text{
+    font-size: 2em;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.member-id{
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+}
+
+.member-pw{
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+}
+
+.non-member .non-member-id{
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+}
+
+.non-member .non-member-pw{
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+}
+
+.non-member .non-member-order-id{
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+}
+
+.find-join {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 50px;
+    font-size: 0.8em;
+    font-family: 'Playfair Display', serif;
+    color: grey
+}
+
+input[type=text]{
+    border: none; /* 모든 테두리를 없앰 */
+    border-bottom: 1px solid #000; /* 아래쪽 테두리만 표시 */
+    background: transparent; /* 배경을 투명하게 */
+    height: 28px;
+}
+
+input[type=submit]{
+    border-width: 1px;
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+    height: 35px;
+    background-color: white;
+}

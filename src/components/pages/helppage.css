@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+.help-page{
+    padding-top: 150px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.datas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.data {
+width: 50%; /* You can adjust this as necessary */
+padding: 50px;
+box-sizing: border-box;
+border-bottom: 1px solid #000;
+text-align: left;
+}
+
+.data:last-child {
+border-bottom: none;
+}
+
+.data-title {
+margin: 0;
+padding-bottom: 10px;
+}
+
+.data-author, .data-date {
+margin: 0;
+padding-top: 10px;
+}
