@@ -12,6 +12,9 @@ import MainPage from './components/pages/mainpage.js';
 import Footer from './components/footer/footer.js';
 import JoinPage from './components/backpages/joinpage.js';
 import AdminPage from './components/admin/adminpage.js';
+import NoAuthorize from './components/backpages/noauthorize.js';
+import MyPage from './components/mypage/mypage.js';
+// import Grid from './components/admin/contents/grid.js';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,18 +29,34 @@ const App = () => {
       }
   }, []);
 
+  useEffect(() => {
+    // console.log("IsStaff: ", isStaff); 
+    const level = Number(localStorage.getItem('level'));
+
+    if(level && isLoggedIn) {
+        setIsStaff(level >= 1);
+    } else {
+        setIsStaff(false);
+    }
+  }, [isLoggedIn]);  // 의존성 배열에 'isLoggedIn' 추가
+
+
+
   return (
     <BrowserRouter>
-      <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {/* props 추가 */}
+      <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isStaff={isStaff} setIsStaff={setIsStaff} />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/store" element={<StorePage />} />
         <Route path="/help" element={<HelpPage />} />
-        <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setIsStaff={setIsStaff} />} />
         <Route path="/messages" element={<MessageList />} /> {/* 이 줄이 추가되었습니다 */}
         <Route path="/join" element={<JoinPage />} />
+        <Route path='/noauthorize' element={<NoAuthorize />} />
         <Route path="/admin" element={<AdminPage isStaff={isStaff} setIsStaff={setIsStaff}/>} />
+        <Route path='/mypage' element={<MyPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isStaff={isStaff} setIsStaff={setIsStaff} />} />
+        {/* <Route path='/grid' element={<Grid />} /> */}
       </Routes>
       <Footer />
     </BrowserRouter>

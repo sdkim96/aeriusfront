@@ -1,0 +1,37 @@
+.right-view{
+    overflow: auto;
+}
+
+.right-view-up{
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.right-view-left{
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.right-view-left img{
+    width:495px;
+    height:800px;
+}
+
+.placeholder-text {
+    color: #aaa;  /* 희미한 텍스트 색상 */
+}
+
+.right-view-right{
+    width:50%;
+}
+
+.right-view-down{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

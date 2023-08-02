@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './loginpage.css';
 
-const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
+const LoginPage = ({ isLoggedIn, setIsLoggedIn, setIsStaff }) => {
 
     const [userid, setuserid] = useState("");
     const [password, setPassword] = useState("");
@@ -23,18 +23,29 @@ const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
             });
 
             const data = await response.json();
+            console.log(data.token);
+            console.log(data.level);
+
 
             if (data.token) {
                 console.log("홈페이지로 리다이렉트")
                 setErrorMessage(null);
                 localStorage.setItem("token", data.token);
                 setIsLoggedIn(true);
-                
+
+                if (data.level) {
+                    // level 정보를 상태 및 로컬 스토리지에 저장
+                    setIsStaff(data.level >= 1);  // level이 2 이상인 경우 staff로 간주
+                    localStorage.setItem("level", data.level);
+
+                }
+                            
                 setTimeout(() => {
                     navigate('/');
                   }, 0);
 
             }
+
 
             if (data.error) {
                 console.log(data.error)

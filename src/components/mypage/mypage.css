@@ -1,0 +1,20 @@
+.my-page{
+    padding : 50px;
+    padding-top: 150px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;  /* Add this */
+}
+
+
+.my-left {
+    width:10%;
+    height:auto;
+    margin-right: 100px;
+}
+
+.my-body{
+    width:1300px;
+    height:auto;
+}

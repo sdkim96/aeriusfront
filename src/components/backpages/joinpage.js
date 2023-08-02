@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './joinpage.css';
+import { useNavigate } from 'react-router-dom';
 
 const JoinPage = () => {
     const [userid, setuserid] = useState("");
@@ -17,6 +18,8 @@ const JoinPage = () => {
 
     // const noregistableid = [super, admin]
     // const noregistablenickname = [super, admin ]
+
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
@@ -44,7 +47,7 @@ const JoinPage = () => {
             setProblemIdFrom('아이디는 6~20자의 영문자, 숫자를 포함해야 합니다.');
         } else {condition4 = true;}
 
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&+])[A-Za-z\d@$!%*#?&+]{6,20}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&+~])[A-Za-z\d@$!%*#?&+~]{6,20}$/;
 
         if (!passwordRegex.test(password)) {
             setProblemPwForm('패스워드는 6~20자의 영문자, 숫자, 특수문자를 포함해야 합니다.');
@@ -82,6 +85,11 @@ const JoinPage = () => {
                 if (data.message) {
                     console.log("아이디 등록완료.")
                     setProblemuserid("아이디 등록완료.")
+
+                    setTimeout(() => {
+                        navigate('/login');
+                      }, 0);
+                    
                 }
     
                 if (data.error) {
