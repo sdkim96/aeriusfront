@@ -23,10 +23,20 @@ const ProductDeleteRightView = () => {
                     
                     if(response.ok) {
                         const data = await response.json();
-                        setProducts(data || []);
+                        if (Array.isArray(data) && data.every(product => 
+                            'id' in product && 'name' in product && 'type' in product &&
+                            'price' in product && 'count' in product && 'size' in product && 
+                            'info' in product && 'images' in product && 
+                            Array.isArray(product.images) && product.images.every(img => 'image' in img)
+                        )) {
+                            setProducts(data || []);
+                        } else {
+                            console.error('Data from server is malformed:', data);
+                        }
                     } else {
                         console.error('Server response:', response.status, response.statusText);
                     }
+                    
                 } catch (error) {
                     console.error(error)
                 }
@@ -68,10 +78,10 @@ const ProductDeleteRightView = () => {
                         <tr key={product.id}>
                             <td>{product.id}</td>
                             <td>{product.name}</td>
-                            <td>{product.type}</td>
+                            <td>{product.type.name}</td>  {/* Change this line */}
                             <td>{product.price}</td>
                             <td>{product.count}</td>
-                            <td>{product.size}</td>
+                            <td>{product.size.name}</td>  {/* And this line */}
                             <td>{product.info}</td>
                             <td>{product.images.map(img => img.image).join(', ')}</td>
                         </tr>
