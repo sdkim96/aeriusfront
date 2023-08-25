@@ -38,7 +38,7 @@ const Chatbot = () => {
         <div className="chatbot">
             <h1>챗봇</h1>
             <div className="answers">
-                <p>{JSON.stringify(response)}</p>
+                <p>{response.response}</p>
 
                 
             </div>
