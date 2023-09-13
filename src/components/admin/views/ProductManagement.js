@@ -4,9 +4,16 @@ import ProductRegisterForm from './PRODM/ProductRegisterForm'
 import ProductRegisterRightView from './PRODM/ProductRegisterRightView'
 import ProductDeleteForm from "./PRODM/ProductDeleteForm";
 import ProductDeleteRightView from "./PRODM/ProductDeleteRightView";
+import ProductEditForm from "./PRODM/ProductEditForm";
+import ProductEditRightView from "./PRODM/ProductEditRightView";
 //... import other forms...
 
 const ProductManagement = () => {
+
+    // 이 코드는 Edit(수정)일때 정보를 right에서 left로 보내주기 위한 상태함수임/
+    const [selectedProduct, setSelectedProduct] = useState(null); 
+    const [editProducts, setEditProducts] = useState([]);
+
 
     const [productName, setProductName] = useState("");
     const [productType, setProductType] = useState("");
@@ -51,6 +58,13 @@ const ProductManagement = () => {
                 return <ProductDeleteForm 
                 
                 />
+
+            case('product-edit'):
+                return <ProductEditForm 
+                    selectedProduct={selectedProduct}
+                    editProducts={editProducts}
+                    setEditProducts={setEditProducts}
+                />
                 
             // ... other cases ...
             default:
@@ -78,6 +92,13 @@ const ProductManagement = () => {
                 return <ProductDeleteRightView 
                 
                         />;
+
+            case('product-edit'):
+                return <ProductEditRightView 
+                    setSelectedProduct={setSelectedProduct}
+                    editProducts={editProducts}
+                    setEditProducts={setEditProducts}
+                        />;
             // ... other cases ...
             default:
                 return null;
@@ -90,7 +111,7 @@ const ProductManagement = () => {
                 <select onChange={handleMenuChange}>
                     <option value="">선택하세요.</option>
                     <option value="product-register">상품 등록</option>
-                    <option value="product-update">상품 정보 수정</option>
+                    <option value="product-edit">상품 정보 수정</option>
                     <option value="product-delete">상품 정보 삭제</option>
                     <option value="product-analyze">상품 분석</option>
                 </select>

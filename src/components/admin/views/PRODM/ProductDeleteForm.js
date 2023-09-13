@@ -14,7 +14,7 @@ const ProductDeleteForm = () => {
         <form name="product-delete" onSubmit={handleProductDeleteSubmit}>
             <button type="submit">상품 삭제하기</button>
             <label className="product-name">
-                <p>상품 이름</p>
+                <p>상품 이름으로 찾기</p>
                 <input type="text" name="product-name" value={deleteProductName} onChange={e => setDeleteProductName(e.target.value)}/>
             </label>
         </form>

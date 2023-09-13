@@ -1,49 +1,59 @@
-import React, { useState } from 'react';
-import './storepage.css'; // 필요한 CSS를 import 합니다.
-
-import goods1 from '../images/goods/1.webp';
-import goods2 from '../images/goods/2.webp';
-import goods3 from '../images/goods/3.webp';
-import goods4 from '../images/goods/1.webp';
-import goods5 from '../images/goods/1.webp';
-import goods6 from '../images/goods/1.webp';
-import goods7 from '../images/goods/1.webp';
-import goods8 from '../images/goods/1.webp';
-import goods9 from '../images/goods/1.webp';
-
-import goods1Alt from '../images/goods/4.webp';
-import goods2Alt from '../images/goods/5.webp';
-import goods3Alt from '../images/goods/6.jpg';
-import goods4Alt from '../images/goods/4.webp';
-import goods5Alt from '../images/goods/5.webp';
-import goods6Alt from '../images/goods/6.jpg';
-import goods7Alt from '../images/goods/4.webp';
-import goods8Alt from '../images/goods/5.webp';
-import goods9Alt from '../images/goods/6.jpg';
-
+import React, { useEffect, useState } from 'react';
+import './storepage.css';
 import placeholderImage from '../images/placeholder.webp';
-
+import { Link } from 'react-router-dom';
 
 const StorePage = () => {
-    const [activeImage, setActiveImage] = useState({
-        good1: goods1,
-        good2: goods2,
-        good3: goods3,
-        good4: goods4,
-        good5: goods5,
-        good6: goods6,
-        good7: goods7,
-        good8: goods8,
-        good9: goods9,
-        // ... other goods
-    });
+    const [activeImage, setActiveImage] = useState({});
+    const [defaultImages, setDefaultImages] = useState({});
+    const [hoverImages, setHoverImages] = useState({});
+    const [products, setProducts] = useState([]);
 
-    const handleMouseEnter = (id, altImage) => {
-        setActiveImage(prev => ({...prev, [id]: altImage}));
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8000/myapp/store_products/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    setProducts(data);
+                    
+                    const initialImages = {};
+                    const initialHoverImages = {};
+                    
+                    data.forEach(product => {
+                        const defaultImage = product.images[0]?.image || placeholderImage;
+                        const hoverImage = product.images[1]?.image || placeholderImage;
+                        
+                        initialImages[`good${product.id}`] = defaultImage;
+                        initialHoverImages[`good${product.id}`] = hoverImage;
+                    });
+
+                    setActiveImage(initialImages);
+                    setDefaultImages(initialImages);
+                    setHoverImages(initialHoverImages);
+                } else {
+                    console.error('Failed to fetch data');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    
+    const handleMouseEnter = (id) => {
+        setActiveImage(prev => ({...prev, [id]: hoverImages[id]}));
     }
 
-    const handleMouseLeave = (id, defaultImage) => {
-        setActiveImage(prev => ({...prev, [id]: defaultImage}));
+    const handleMouseLeave = (id) => {
+        setActiveImage(prev => ({...prev, [id]: defaultImages[id]}));
     }
 
     return (
@@ -56,88 +66,30 @@ const StorePage = () => {
                     <option value="category2">Category 2</option>
                 </select>
             </div>
+
             <div className='goods'>
-                <div className='rows'>
-                    <div className='row1'>
-                        <div className='good1'
-                            onMouseEnter={() => handleMouseEnter('good1', goods1Alt)}
-                            onMouseLeave={() => handleMouseLeave('good1', goods1)}>
-                            <img src={activeImage.good1} 
+                {products.map(product => (
+                <div className='good-container' key={product.id}>
+                    {/* 아래 줄에 Link 추가 */}
+                    <Link to={`/store/product/${product.id}`}> {/* 이렇게 추가하면 클릭시 해당 상품의 상세 페이지로 이동합니다 */}
+                    <div className={`good-item good${product.id}`}
+                        onMouseEnter={() => handleMouseEnter(`good${product.id}`, product.images[1]?.image || placeholderImage)}
+                        onMouseLeave={() => handleMouseLeave(`good${product.id}`, product.images[0]?.image || placeholderImage)}>
+                        <div className="item-content">
+                        <img src={activeImage[`good${product.id}`] || placeholderImage}
                             alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src={placeholderImage}}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
-                        <div className='good2'
-                            onMouseEnter={() => handleMouseEnter('good2', goods2Alt)}
-                            onMouseLeave={() => handleMouseLeave('good2', goods2)}>
-                            <img src={activeImage.good2} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src="이미지 준비중입니다."}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
-                        <div className='good3'
-                            onMouseEnter={() => handleMouseEnter('good3', goods3Alt)}
-                            onMouseLeave={() => handleMouseLeave('good3', goods3)}>
-                            <img src={activeImage.good3} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src="이미지 준비중입니다."}}/>
-                            <p>어쩌구저쩌구</p>
+                            onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage }} />
                         </div>
                     </div>
-                    <div className='row2'>
-                        <div className='good4'
-                            onMouseEnter={() => handleMouseEnter('good4', goods4Alt)}
-                            onMouseLeave={() => handleMouseLeave('good4', goods4)}>
-                            <img src={activeImage.good4} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src=placeholderImage}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
-                        <div className='good5'
-                            onMouseEnter={() => handleMouseEnter('good5', goods5Alt)}
-                            onMouseLeave={() => handleMouseLeave('good5', goods5)}>
-                            <img src={activeImage.good5} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src=placeholderImage}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
-                        <div className='good6'
-                            onMouseEnter={() => handleMouseEnter('good6', goods6Alt)}
-                            onMouseLeave={() => handleMouseLeave('good6', goods6)}>
-                            <img src={activeImage.good6} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src={placeholderImage}}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
-                    </div>
-                    <div className='row3'>
-                        <div className='good7'
-                            onMouseEnter={() => handleMouseEnter('good7', goods7Alt)}
-                            onMouseLeave={() => handleMouseLeave('good7', goods7)}>
-                            <img src={activeImage.good7} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src={placeholderImage}}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
-                        <div className='good8'
-                            onMouseEnter={() => handleMouseEnter('good8', goods8Alt)}
-                            onMouseLeave={() => handleMouseLeave('good8', goods8)}>
-                            <img src={activeImage.good8} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src="이미지 준비중입니다."}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
-                        <div className='good9'
-                            onMouseEnter={() => handleMouseEnter('good9', goods9Alt)}
-                            onMouseLeave={() => handleMouseLeave('good9', goods9)}>
-                            <img src={activeImage.good9} 
-                            alt="이미지 준비중입니다."
-                            onError={(e)=>{e.target.onerror = null; e.target.src="이미지 준비중입니다."}}/>
-                            <p>어쩌구저쩌구</p>
-                        </div>
+                    </Link>  {/* Link 컴포넌트 닫기 */}
+                    <div className="good-info">
+                    <p>{product.name}</p>
+                    <p>{product.info}</p>
                     </div>
                 </div>
+                ))}
             </div>
+
             <div className='pages'>
                 <button>{'<'}</button>
                 {[...Array(10).keys()].map((i) =>

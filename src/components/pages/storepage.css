@@ -12,99 +12,65 @@
     width: 100%;
 }
 
-
-
 .goods {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* 아이템 사이의 공백 */
     align-items: center;
-    height: auto;
     padding: 30px;
 }
 
-.rows {
+.row {
     display: flex;
+    justify-content: space-between; /* 이 부분이 각 열에서 아이템 사이에 공백을 만듭니다. */
     width: 100%;
-    flex-direction: column;
-    padding-left: 100px;
-    padding-right: 100px;
+    margin-bottom: 30px; /* 각 행과 행 사이의 공백 */
 }
 
-.rows img{
-    display: flex;
+.good-container {
+    flex: 1;
+    max-width: calc(33.33% - 30px); /* 아이템 간의 공백을 고려 */
+    margin-bottom: 30px; /* 아이템과 제목 사이의 공백 */
+}
+
+.good-item {
+    position: relative;
+    height: calc(450px * 1.618);
+    overflow: hidden;
+}
+
+.good-item img {
     width: 450px;
     height: calc(450px * 1.618);
+    object-fit: cover;
+    object-position: center;
     transition: opacity 2s ease-in-out;
 }
 
-.row1, .row2, .row3{
+.good-info {
+    width: 450px;
     display: flex;
-    justify-content: space-around;
-    height: 100vh;
-}
-
-.rows p{
+    flex-direction: column;
     align-items: center;
-    text-align:  center;
+    justify-content: center;
+    text-align: center;
 }
 
 .pages {
     display: flex;
     justify-content: center;
     align-items: center;
-    
     padding-bottom: 100px;
 }
 
 .pages button {
     margin: 5px;
     padding: 0.5rem 1rem;
-  
     font-family: "Noto Sans KR", sans-serif;
     font-size: 1rem;
     font-weight: 500;
     text-align: center;
     text-decoration: none;
-  
-    display: inline-block;
-    width: auto;
-  
-    border: black;
+    border: 1px solid black;
     border-radius: 4px;
 }
-
-
-
-
-
-/* */ /* *//* *//* *//* *//* *//* *//* *//* *//* *//* *//* *//* */
-/* .goods {
-    display: flex;
-    flex-wrap: wrap;
-}
-  
-.good-item {
-position: relative;
-width: calc(100% / 3);
-} */
-
-/* .default-image, .alt-image {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: auto;
-transition: opacity 5s ease-in-out;
-} */
-
-/* .alt-image {
-opacity: 0;
-} */
-
-/* .fade-out {
-opacity: 0;
-}
-
-.fade-in {
-opacity: 1;
-} */
-  

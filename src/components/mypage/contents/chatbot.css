@@ -1,3 +1,11 @@
 .answers{
     width: 100vh;
+    height: 60vh;
+    overflow: scroll;
 }
+
+form[name='chatbot-form']{
+    width: 100vh;
+}
+
+

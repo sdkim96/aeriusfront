@@ -20,10 +20,19 @@ const ProductRegisterForm = ({ productName, setProductName, productType,
             subImages.forEach((image, index) => {
                 formData.append(`subImage${index}`, image);
             });
+
+            const token = localStorage.getItem('token');
+
+            for (let [key, value] of formData.entries()) {
+                console.log(key, value);
+              }
         
             try {
                 const response = await fetch('http://localhost:8000/admin/products/register/', {
                     method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,  
+                    },
                     body: formData
                 });
         

@@ -57,13 +57,55 @@ const ProductDeleteRightView = () => {
 
     console.log({products});
 
+    const handleButtonClick = async (product) => {
+        console.log("버튼 클릭:", product);
+        const token = localStorage.getItem('token'); // 토큰 가져오기
+    
+        try {
+            const response = await fetch(`http://localhost:8000/admin/products/delete/${product.id}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            if (response.ok) {
+                alert('물품삭제가 완료 되었습니다.'); // 삭제 성공 알림
+    
+                // 데이터 다시 불러오기
+                const refreshResponse = await fetch('http://localhost:8000/admin/products/read/all/', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,  
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if(refreshResponse.ok) {
+                    const newData = await refreshResponse.json();
+                    setProducts(newData || []);
+                } else {
+                    console.error('Failed to refresh data:', refreshResponse.status, refreshResponse.statusText);
+                }
+    
+            } else {
+                console.error('Failed to delete product:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
+    
+
     
     return (
         <div className="product-delete">
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>button</th>
                         <th>Name</th>
                         <th>Type</th>
                         <th>Price</th>
@@ -75,8 +117,8 @@ const ProductDeleteRightView = () => {
                 </thead>
                 <tbody>
                     {products.map(product => (
-                        <tr key={product.id}>
-                            <td>{product.id}</td>
+                        <tr key={product.name}>
+                            <td><button onClick={() => handleButtonClick(product)}>버튼</button></td>
                             <td>{product.name}</td>
                             <td>{product.type.name}</td>  {/* Change this line */}
                             <td>{product.price}</td>

@@ -14,6 +14,7 @@ import JoinPage from './components/backpages/joinpage.js';
 import AdminPage from './components/admin/adminpage.js';
 import NoAuthorize from './components/backpages/noauthorize.js';
 import MyPage from './components/mypage/mypage.js';
+import ProductDetail from './components/pages/productdetail.js';
 // import Grid from './components/admin/contents/grid.js';
 
 const App = () => {
@@ -48,7 +49,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/about" element={<AboutPage />} />
+
         <Route path="/store" element={<StorePage />} />
+        <Route path="/store/product/:id" element={<ProductDetail />} />
+
         <Route path="/help" element={<HelpPage />} />
         <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setIsStaff={setIsStaff} />} />
         <Route path="/messages" element={<MessageList />} /> {/* 이 줄이 추가되었습니다 */}

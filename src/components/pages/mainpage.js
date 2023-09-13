@@ -3,6 +3,10 @@ import video from '../videos/mainpage_video.mp4'
 import image1 from '../images/mainpage/i1.jpg'
 import image2 from '../images/mainpage/i2.jpg'
 import image3 from '../images/mainpage/i3.jpg'
+import image4 from '../images/mainpage/i4.jpg'
+import image5 from '../images/mainpage/i5.jpg'
+import image6 from '../images/mainpage/i6.jpg'
+
 import Footer from '../footer/footer.js';
 
 import React, { useEffect, useRef } from 'react';
@@ -56,9 +60,16 @@ const MainPage = () => {
                     <video ref={videoRef} src={video} autoPlay muted />
                 </div>
                 <div className='images-section'>
-                    <img src={image1} alt="i1"/>
-                    <img src={image2} alt="i2"/>
-                    <img src={image3} alt="i3"/>
+                    <div className='first-row'>
+                        <img src={image1} alt="i1"/>
+                        <img src={image2} alt="i2"/>
+                        <img src={image3} alt="i3"/>
+                    </div>
+                    <div className='second-row'>
+                        <img src={image4} alt="i4"/>
+                        <img src={image5} alt="i5"/>
+                        <img src={image6} alt="i6"/>
+                    </div>
                 </div>
                 <div className='footer-section'>
                     <Footer />

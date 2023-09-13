@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
+@font-face {
+    font-family: 'MyFont';
+    src: url('/home/azureuser/projects/aerius/myweb/frontend/src/components/fonts/Georgia Regular font.ttf') format('truetype');
+  }
+
 .footer {
     font-family: 'Playfair Display', serif;
     padding: 30px;
@@ -14,9 +19,9 @@
 }
 
 .footer-img {
-    font-family: 'Playfair Display', serif;
-    font-size: 7em;  /* Adjust size as needed */
+    font-family: 'MyFont', serif;
+    font-size: 4em;  /* Adjust size as needed */
     text-transform: uppercase;
     text-align: right;
-    font-weight: 900;
+    /* font-weight: 900; */
 }
