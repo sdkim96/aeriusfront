@@ -1,70 +1,22 @@
 # 프로젝트 개요
-Azure VM을 통해 쇼핑몰 사이트(프로젝트명 : Aerius)를 효
+'Aerius'는 Azure VM을 활용하여 구축된 쇼핑몰 사이트입니다. 이 프로젝트는 주로 프론트엔드 개발에 중점을 두었으며, 사용자 친화적인 인터페이스와 효율적인 사용자 경험을 제공하는 것을 목표로 합니다.
 
-## Available Scripts
+## 기능 목록
+(여기에 프로젝트의 주요 기능들을 나열하세요. 예를 들어, 사용자 인증, 상품 검색, 장바구니 기능, 결제 시스템 등이 있을 수 있습니다.)
 
-In the project directory, you can run:
+- 기능 1: [사용자 인증]
+  aerius 사용자 인증은 다음과 같은 방법으로 진행됩니다.
+  1. fetch통신을 통해 사용자의 인증정보(아이디와 비밀번호) 전송
+  2. 사용자의 인증정보를 받은 백엔드는 자체적으로 token을 제작하여(jwt라이브러리 이용) 정보를 sql 서버를 저장하고 클라이언트로 반환
+  3. 클라이언트는 해당 token을 로컬스토리지에 저장합니다.
+    
+- 기능 2: [상품 검색]
+  
+- 기능 3: [장바구니 기능]
+  
 
-### `npm start`
+## 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# aeriusprivate
+이 프로젝트에서 다음과 같은 기술스택을 사용하였습니다.
+- React
+- Fetch 통신
