@@ -1,6 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 프로젝트 개요
+Azure VM을 통해 쇼핑몰 사이트(프로젝트명 : Aerius)를 효
 
 ## Available Scripts
 
